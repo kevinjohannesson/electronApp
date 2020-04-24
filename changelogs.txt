@@ -1,0 +1,93 @@
+
+////                                                Versie 0.0.1
+////    Opzet van canvas layering en basic 2d euclidische ruimte
+
+//--------------------------------------------------------------
+
+//                                                  Versie 0.0.2
+//   Basic lijnfunctie toegevoegd als verbinding tussen 2 punten
+
+//--------------------------------------------------------------
+
+// //                                                Versie 0.0.3
+// /                                      Polygon tool toegevoegd
+
+//--------------------------------------------------------------
+
+//                                                  Versie 0.0.4
+//                                          line tool toegevoegd
+//--------------------------------------------------------------
+
+Versie 0.0.5
+Code refining, made older version functionality tests compatible with current version, refined polygon class, refined line class, simplified version testing
+
+//--------------------------------------------------------------
+
+//Version 0.0.6
+//Making improvements to the layering system and overal UI
+
+//--------------------------------------------------------------
+
+//version 0.0.7
+//Adding basic animation...
+//Added translate point function...
+
+//--------------------------------------------------------------
+
+//version 0.0.8
+//Adding rotation functionality...
+
+
+//--------------------------------------------------------------
+
+//version 0.0.9
+//Adding file saving and a child window for loading external content...
+
+//--------------------------------------------------------------
+
+//version 0.0.10
+//improving on previous version...
+
+//--------------------------------------------------------------
+
+//version 0.0.11
+//improving on previous version, directory overhaul, trying to separate the functions into smaller chunks
+//--------------------------------------------------------------
+
+//version 0.0.12
+// improving on previous version, added improved child window functionality using webview instead of loading in the main process, improved the legibility of the code but broke the external site loading functionality.
+//--------------------------------------------------------------
+//version 0.0.13
+-created a changelogs.txt file to keep track of logging
+-repaired external site functionality
+//--------------------------------------------------------------
+//version 0.0.14
+-further reworking on the external adobe site loader, added a download functionality to import colorthemes back to the animation window
+//--------------------------------------------------------------
+//version 0.0.15
+- Went back into earlier created functions and found them not to be working... 
+- reworking the point and edge system, I don't think the draw() functionality 
+  is apporpriate IE: point system should be separate from layer system.
+  reworked the layer system
+  also not sure if point cloud system is very useful or necessery, maybe grouping would be better
+--FIXES:
+- fixed the grid class and made compatible with new layer system
+--ADDED:
+- added preferences.json file to store settings and preferences
+- added test_functions.js to store test functions
+- added testfunction for the layers system
+- added testfunction for the layers shape creations, with and without configs
+- added testfunctions for the point creation
+- added testfunctions for the edge creation
+- added a sort of renderer function class called Odin to render pointspace on the canvas
+- added basic animation functionality class called Freya
+- rebuild point system to something class called Asgard
+
+- added new point display functionality with display options of circle, square or plus 
+--REMOVED:
+- removed the JSON write tester that created myFile.JSON on startup
+- removed draw() methods from point, edge and pointcloud classes
+- removed old pointcloud, point and edge classes in favour of new leaner classes
+
+
+

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: layer.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: layer.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Prototype values: 
+// ----------------
+
+/**
+ * The CanvasRenderingContext2D interface, part of the Canvas API, provides the 2D rendering context for the drawing surface of a &lt;code>&amp;lt;canvas&amp;gt;&lt;/code> element. It is used for drawing shapes, text, images, and other objects.See {@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D|MDN}.
+ *
+ * @namespace {Object} CanvasRenderingContext2D
+ */
+
+
+
+/**
+ * Default configuration for the canvasRenderingContext2D stroke and fill.
+ * By default stroke is set to true, 2 pixels wide and black. 
+ * By default fill is set to false and black.
+ *
+ * @memberof CanvasRenderingContext2D
+ *
+ * @example &lt;caption>Full object&lt;/caption>
+ * defaultConfig = {
+  fillStyle: 'rgba( 0, 0, 0, 1 )',
+  fill: false,
+  strokeStyle: 'rgba( 0, 0, 0, 1)',
+  strokeThickness: 2,
+  stroke: true
+};
+ */
+CanvasRenderingContext2D.prototype.defaultConfig = {
+  fillStyle: 'rgba( 0, 0, 0, 1 )',
+  fill: false,
+  strokeStyle: 'rgba( 0, 0, 0, 1)',
+  strokeThickness: 2,
+  stroke: true
+};
+
+// Prototype methods:
+// -----------------
+
+// Graphical operations:
+
+
+
+
+/**
+ * The HTMLCanvasElement interface provides properties and methods for manipulating the layout and presentation of &lt;code>&amp;lt;canvas&amp;gt;&lt;/code> elements. The HTMLCanvasElement interface also inherits the properties and methods of the HTMLElement interface. See {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement|MDN}.
+ *
+ * @namespace {Object} HTMLCanvasElement
+ */
+
+
+
+/**
+ * Fills the canvas with a specified color.
+ * Simplification for CanvasRenderingContext2D fillRect.
+ *
+ * @memberof HTMLCanvasElement
+ *
+ * @param {string} color - Any css accepted color value.
+ *
+ * @example &lt;caption>Using a rgba value:&lt;/caption>
+ * // fill the whole canvas with black color:
+ * HTMLCanvasElement.fill( 'rgba( 0, 0, 0, 1 )' );
+ *
+ * @example &lt;caption>Using a hex value:&lt;/caption>
+ * // fill the whole canvas with red color:
+ * HTMLCanvasElement.fill( '#ff0000' );
+ *
+ * @example &lt;caption>Using a css name value:&lt;/caption>
+ * // fill the whole canvas with gold color:
+ * HTMLCanvasElement.fill( 'gold' );
+ *
+ */
+HTMLCanvasElement.prototype.fill = function( color = this.getContext('2d').defaultConfig.fillStyle ) { 
+  const context = this.getContext('2d'); // Get this canvas' CanvasRenderingContext2D object.
+  context.fillStyle = color; // Set context fillcolor to the passed color argument.
+  context.fillRect(0, 0, this.width, this.height) // Create a rectangle starting at top-left of the canvas and ending at the bottom-right, filling the canvas.
+}
+
+
+
+/**
+ * Clear the whole canvas.
+ * Simplification for CanvasRenderingContext2D clearRect.
+ *
+ * @memberof HTMLCanvasElement
+ *
+ * @example &lt;caption>Clear the canvas:&lt;/caption>
+ * // clear the whole canvas:
+ * HTMLCanvasElement.clear();
+ *
+ */
+HTMLCanvasElement.prototype.clear = function() { this.clearRect( 0, 0, this.width, this.height); } // Create a clearing rectangle starting at top-left and ending at bottom-right, clearing the canvas.
+
+
+/**
+ * Draw the path on the canvas.
+ * Simplification for fill() and stroke() for path.
+ * &lt;br>
+ * This function needs a {@link drawLine|path} in order to function properly:
+ * 
+ * @memberof HTMLCanvasElement
+ *
+ * 
+ * @param {Object} config - A configuration for the stroke and fill.
+ *
+ * @example &lt;caption>Stroke the path:&lt;/caption>
+ * // defaultConfig is stroke only:
+ * HTMLCanvasElement.draw();
+ *
+ * @example &lt;caption>Stroke and fill the path:&lt;/caption>
+ * // defaultConfig.fill is false:
+ * HTMLCanvasElement.draw( { fill: true } );
+ *
+ * @example &lt;caption>Fill the path with a color:&lt;/caption>
+ * // Set config.fill to true and provide a color:
+ * HTMLCanvasElement.draw( { stroke: false, fill: true, fillStyle: 'rgba( 123, 43, 210 )' } );
+ *
+ * @example &lt;caption>Stroke and fill the path with a color:&lt;/caption>
+ * // Set config strokeStyle to a color:
+ * HTMLCanvasElement.draw( { strokeStyle: 'rgba( 123, 43, 210 )', fill: true, fillStyle: 'rgba( 210, 123, 43 )' } );
+ * 
+ * @see {@link drawLine}
+ */
+HTMLCanvasElement.prototype.draw = function ( config = this.getContext('2d').defaultConfig ) {
+  const context = this.getContext('2d'); // Get this canvas' CanvasRenderingContext2D object.
+  if ( config != this.defaultConfig ) { // Check if an alternate config has been passed.
+    const defaultConfig = JSON.parse( JSON.stringify( context.defaultConfig ) ); // Create a copy of the default config.
+    config = Object.assign( defaultConfig, config ); // Alter the default config with changes from the passed config argument.
+  }
+  // Check if the config specifies a stroke for the path:
+  if ( config.stroke === true ) {
+    context.strokeStyle = config.strokeStyle; // Set the specified stroke color from the config.
+    context.lineWidth = config.lineWidth; // Set the specified line thickness from the config.
+    context.stroke(); // Stroke the path with the color and thickness.
+  }
+  // Check if the config specifies a fill for the path:
+  if ( config.fill === true ) { 
+    context.fillStyle = config.fillStyle; // Set fill color from the config.
+    context.fill(); // Fill the path with the color.
+  }
+}
+
+/**
+ * Draw a line on the canvas.
+ * Simplification for lineTo():.
+ *
+ * @memberof HTMLCanvasElement
+ *
+ * @param {Object} vector_start - A { x, y } location vector.
+ * @param {Object} vector_end - A { x, y } location vector.
+ *
+ * @todo create examples
+ */
+HTMLCanvasElement.prototype.drawLine = function ( vector_start = { x: 0, y: 0 }, vector_end = { x: 100, y: 100 }, config = this.getContext('2d').defaultConfig ) {
+  const context = this.getContext('2d');
+  context.beginPath();
+  context.moveTo( vector_start.x, vector_start.y );
+  context.lineTo( vector_end.x, vector_end.y );
+  this.draw( config );
+}
+
+HTMLCanvasElement.prototype.addToDocument = function ( container = document.querySelector( 'body' ) ) {
+  console.log('hallo')
+}
+
+// class to create and edit html canvas elements
+class Layer{
+  constructor(){
+    // every layer is a new canvas element:
+    this.canvas = document.createElement('canvas');
+    // store the context
+    this.context = this.ctx = this.canvas.getContext('2d');
+    // default canvas context stroke and fill config:
+    this.ctx_default_config = {
+    	fill_style: 'rgba( 0, 0, 0, 1 )',
+    	fill: false,
+    	stroke_style: 'rgba( 0, 0, 0, 1)',
+    	stroke_thickness: 1,
+    	stroke: true
+    };
+  }
+
+  // canvas dimensions
+  get height() { return this.canvas.height }
+  set height( h ) { this.canvas.height = h; }
+
+  get width() { return this.canvas.width }
+  set width( w ) { this.canvas.width = w; }
+
+  // append the canvas element to the dom tree
+  addToDocument( container_element ){
+    // edit canvas dimensions to container div:
+    this.height = container_element.clientHeight;
+    this.width = container_element.clientWidth;
+    // add canvas element to container div...
+    container_element.appendChild(this.canvas);
+    // make visible as the default...
+    this.show(true);
+  }
+
+  // naming the layer:
+  get id(){ return this.canvas.attributes.id }
+  set id( name ) { this.canvas.setAttribute('data-layer', name); }
+
+  // css display and opacity:
+  show( bool ) {
+    if( bool ) this.canvas.style.display = 'block';
+    else this.canvas.style.display = 'none';
+  }
+
+  get opacity() { return this.canvas.style.opacity }
+  set opacity( float_val = 0.5 ){ this.canvas.style.opacity = float_val; }
+  
+  // Graphical operations:
+
+  // fill whole layer with single color:
+  fill( color = 'rgba( 255, 255, 255, 1 )' ) {
+    this.context.fillStyle = color;
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+	}
+	// clear whole layer
+  clear() { this.context.clearRect(0,0, this.canvas.width, this.canvas.height); }
+
+  // update canvas context config for stroke and fill styles:
+  getConfig( config_changes = { stroke: true } ) { 
+  	// getter config for canvas context operations with optional changes:
+  	// create a copy, not a reference, of the default config:
+  	const target = JSON.parse( JSON.stringify( this.ctx_default_config ) )
+  	// alter the copy with input from the optional changes:
+  	return Object.assign( target, config_changes );
+  }
+
+  fillPath( config = this.ctx_default_config ) {
+  	if ( config.fill === true ) {
+  		const ctx = this.ctx;
+  		ctx.fillStyle = config.fill_style;
+			ctx.fill();
+		}
+  }
+
+  strokePath( config = this.ctx_default_config ) {
+  	if ( config.stroke === true ) {
+  		const ctx = this.ctx; 
+	  	ctx.strokeStyle = config.stroke_style;
+			ctx.lineWidth = config.stroke_thickness;
+			ctx.stroke();
+		}
+  }
+
+  strokeAndFillPath( config = this.ctx_default_config ) {
+  	this.strokePath( config );
+  	this.fillPath( config );
+  }
+
+  // canvas stroke and fill operations with configuration:
+  ctx_draw( config = this.ctx_default_config ) {
+    // update canvas configuration if changes have been passed as arguments:
+    if ( config != this.ctx_default_config ) this.getConfig( config );
+    if ( config.stroke === true ) {
+      this.ctx.strokeStyle = config.stroke_style;
+      this.ctx.lineWidth = config.stroke_thickness;
+      this.ctx.stroke();
+    }
+    if ( config.fill === true ) {
+      this.ctx.fillStyle = config.fill_style;
+      this.ctx.fill();
+    }
+  }
+
+  // draw a circle on the canvas:
+  drawCircle( vector = { x: 300, y: 300 }, radius = 100, config_changes = { fill: this.ctx_default_config.fill } ){
+    // start the path:
+    this.ctx.beginPath();
+    this.ctx.arc( vector.x, vector.y, radius, 0, Math.PI * 2 );
+    // stroke and fill path with config_changes:
+    this.strokeAndFillPath( this.config( config_changes ) );
+  }
+
+  drawLine( vector_start = { x: 0, y: 0 }, vector_end = { x: 300, y: 300 }, config_changes = { fill: this.ctx_default_config.fill } ){
+    // create path at supplied coordinates:
+    // this.ctx.beginPath();
+    // this.ctx.moveTo( vector_start.x, vector_start.y );
+    // this.ctx.lineTo( vector_end.x, vector_end.y );
+
+    // console.log(this.ctx)
+    // console.log(this.ctx.defaultConfig)
+    this.canvas.drawLine();
+    // this.canvas.addToDocument();
+    // console.dir(this.canvas)
+    // this.ctx.aapje = ()=> {
+    // // update canvas configuration if changes have been passed as arguments:
+    //   // if ( config != this.ctx_default_config ) this.getConfig( config );
+    //   // if ( config.stroke === true ) {
+    //     // this.strokeStyle = config.stroke_style;
+    //     // this.lineWidth = config.stroke_thickness;
+    //     console.log(this.ctx)
+    //     // this.stroke();
+    //   // }
+    //   // if ( config.fill === true ) {
+    //     // this.fillStyle = config.fill_style;
+    //     // this.fill();
+    //   // }
+    // }
+
+    // this.ctx.aapje();
+    // this.ctx_draw( config_changes )
+    // this.strokeAndFillPath( this.config( config_changes ) );
+  }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="HTMLCanvasElement.html">HTMLCanvasElement</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Apr 18 2020 03:01:23 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

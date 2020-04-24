@@ -1,0 +1,76 @@
+html body{
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	margin: 0;
+
+	color: #ffffff;
+	font-family: 'Lato', sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 12px;
+	letter-spacing: 1px;
+}
+
+webview{
+	width: 100vw;
+	height: 100vh;
+}
+
+.overlay {
+	height: 100%;
+	width: 100%;
+
+	background-color: #0D0D0B;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+
+	opacity: 0;
+	visibility: hidden;
+
+	transition: opacity 0.7s ease-in-out, visibility 0.7s;
+}
+.overlay.visible{
+	opacity: 1;
+	visibility: visible;
+}
+
+
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+	height: 100%;
+}
+/*fadein with delay for fontawesome loading times*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.close_button_wrapper{
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 10px;
+	z-index: 999;
+
+	opacity: 1;
+
+	animation: 2.5s linear 0s 1 fadeIn;
+}
+
+

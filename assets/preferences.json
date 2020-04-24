@@ -1,0 +1,18 @@
+{
+    "current_colorscheme": [
+        "rgb(242, 119, 129)",
+        "rgb(24, 41, 140)",
+        "rgb(4, 191, 138)",
+        "rgb(242, 207, 29)",
+        "rgb(242, 159, 5)"
+    ],
+    "odin": {
+        "point_display": "plus",
+        "point_radius": "3",
+        "point_color": "rgb(255, 255, 255)"
+    },
+    "freya": {
+        "fps": "30",
+        "total_frames": "999"
+    }
+}
