@@ -37,13 +37,28 @@ class Vector {
 
   }
 
+  addVector = ( vector_a, vector_b )=>{
+    const newVector = {};                                  
+    for ( const axis in vector_a ) {                       
+      newVector[axis] = vector_a[axis] + vector_b[axis]
+    } 
+    return newVector
+  }
+
+  add( ...vectors ){
+    let newVector = { x: 0, y: 0 }
+    vectors.forEach( vector => {
+        newVector = this.addVector( newVector, vector )
+    })
+    return newVector
+  }
   // Vector addition
   // To do: zou willen dat ie meer dan 2 vectors, liever nog een unlimited aantal arguments kan, dus arguments.foreach() oid maken
-  add( vector_a = vec2( 12 , 16 ), vector_b = vec2( 34, -18 ) ) {
-    const newVector = {};                                  // declare a new empty vector object
-    for ( const axis in vector_a ) {                       // iterate over all axis of the supplied vector
-      newVector[axis] = vector_a[axis] + vector_b[axis]; } // assign the addion of the axis-key of vector_b and the axis-key of vector_a to the new vector object
-    return newVector }                                     // return the new vector
+  // add( vector_a = vec2( 12 , 16 ), vector_b = vec2( 34, -18 ) ) {
+  //   const newVector = {};                                  // declare a new empty vector object
+  //   for ( const axis in vector_a ) {                       // iterate over all axis of the supplied vector
+  //     newVector[axis] = vector_a[axis] + vector_b[axis]; } // assign the addion of the axis-key of vector_b and the axis-key of vector_a to the new vector object
+  //   return newVector }                                     // return the new vector
 
   // createVectorXY( xValue = 0, yValue = 0 ) {
   //   const vector = { x: xValue, y: yValue };
@@ -72,9 +87,9 @@ class Vector {
 
 }
 
-const vector = new Vector;
+const vectorMath = new Vector;
 
-const vec2 = vector.createVectorXY;
+const vec2 = vectorMath.createVectorXY;
 
 const vec2n = ( x = 0, y = 0 ) => { return { x: x, y: y } }
 
