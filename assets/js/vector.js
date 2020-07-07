@@ -9,6 +9,12 @@ const vec3 = ( x = 0, y = 0, z = 0 ) => { return { x: x, y: y, z: z } },
       vec4 = ( x = 0, y = 0, z = 0, w = 1 ) => { return { x: x, y: y, z: z, w: w } };
 
 // vec2 = ( x = 0, y = 0 ) => { return { x: x, y: y } },
+class Vector {
+  constructor ( x = 0, y = 0 ){
+    this.x = x
+    this.y = y
+  }
+}
 
 // const vec2 = ( x = 0, y = 0 ) => {
 //   if( ( typeof x === 'number' || x.constructor === Array ) && 
@@ -32,7 +38,7 @@ const vec3 = ( x = 0, y = 0, z = 0 ) => { return { x: x, y: y, z: z } },
 // }
 
 
-class Vector {
+class VectorMath {
   constructor(){
 
   }
@@ -50,6 +56,23 @@ class Vector {
     vectors.forEach( vector => {
         newVector = this.addVector( newVector, vector )
     })
+    return newVector
+  }
+
+  multiplyVector = ( vector_a, vector_b )=>{
+    const newVector = {};                                  
+    for ( const axis in vector_a ) {                       
+      newVector[axis] = vector_a[axis] * vector_b[axis] } 
+    return newVector
+  }
+
+  multiply( ...vectors ){
+    let newVector;
+    vectors.forEach( ( vector, index ) => {
+      if ( index !== 0 ) { 
+        newVector = this.multiplyVector( vectors[index-1], vector ) } 
+    })
+    
     return newVector
   }
   // Vector addition
@@ -87,7 +110,7 @@ class Vector {
 
 }
 
-const vectorMath = new Vector;
+const vectorMath = new VectorMath;
 
 const vec2 = vectorMath.createVectorXY;
 

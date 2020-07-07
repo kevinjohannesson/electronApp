@@ -237,3 +237,11 @@ span[data-version_number] {
     transform: translate( calc( var(--loading_icon_size) * 24px), 0);
   }
 }
+
+.function {
+	font-size: 50px;
+	color: black;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-style: italic;
+	padding: 10px;
+}

@@ -22,6 +22,6 @@ Freyja.prototype.addCanvas = function( name = `new_layer_${ this.layers.length }
  	canvas.width = this.container.clientWidth;				// Set width of the canvas to be the same as the container.
 	this.container.appendChild( canvas ); 						// Append the canvas to a container element.
 	this.layers.push( canvas ); 											// Add the canvas to Freyja layer set.
-	this.current_layer = canvas; 											// Set created canvas to be Freyja current layer.
+	this.canvas = canvas; 											// Set created canvas to be Freyja current layer.
 	return canvas 																		// Return the created canvas element.
 }

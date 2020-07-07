@@ -8,6 +8,6 @@
  * CanvasRenderingContext2D.clear(); // clear the whole canvas:
  *
  */
-CanvasRenderingContext2D.prototype.clear = function() { 
+CanvasRenderingContext2D.prototype.clearLayer = function() { 
   this.clearRect( 0, 0, this.canvas.width, this.canvas.height);  // Create the clearing rectangle.
 } 

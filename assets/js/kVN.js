@@ -1,5 +1,36 @@
-const debugMode = true; // global debuggin mode boolean
+// const _positive = ( x ) => x > 0
+// const _negative = ( x ) => x < 0
+// const _zero = ( x ) => x === 0
 
+const operator_table = {
+   '<': ( a, b ) => { return a < b },
+  '<=': ( a, b ) => { return a <= b },
+   '>': ( a, b ) => { return a > b },
+  '>=': ( a, b ) => { return a >= b },
+  '==': ( a, b ) => { return a == b },
+  '===': ( a, b ) => { return a === b },
+  '!=': ( a, b ) => { return a != b },
+  '!==': ( a, b ) => { return a !== b },
+}
+
+const _eval = _evaluate = ( ...args ) => {
+  const value = args[0]
+  const operator = args[1]
+  
+  let index;
+  const total_values = args.length
+  for( index = 2; index < total_values; index++ ) {
+    const test_value = args[index]
+    if( !operator_table[ operator ]( value, test_value ) ) return false
+  }
+  return true
+}
+
+const _positive = ( ...args ) => _evaluate( 0, '<', ...args )
+const _negative = ( ...args ) => _evaluate( 0, '>', ...args )
+const _zero = ( ...args ) => _evaluate( 0, '===', ...args )
+
+// console.log( _zero(0, 0, 0) )
 
 
 // sort of a .length for {} objects

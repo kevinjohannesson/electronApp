@@ -14,6 +14,12 @@
 		<div class="overlay">
 			<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 		</div>
+
+	
+				<div class="position-absolute w-100 d-flex justify-content-end align-items-end" style="z-index: 300; bottom: 0; right: 0">
+					<!-- <span class="function">ƒ(x) = </span><span class="function" contenteditable="true" data-function>5x<sup>3</sup> + 2x<sup>2</sup> + 2x</span> -->
+				</div>
+
 		<div class="container-fluid h-100">
 			<div class="row bg-dark">
 				<div class="col p-0">
@@ -32,6 +38,9 @@
 		</div>
 	</div>
 
+
+
+
 	<div class="container-fluid ui-wrapper">
   <div class="row justify-content-between align-items-center h-100">
     <div class="tool_wrapper"> 
@@ -45,13 +54,17 @@
     <div class="col-1">
       <div class="side_menu">
       	xStart:
-      	<input type="range" name="" class="slider">
+      	<input type="number" name="" class="slider" data-x_min value="0">
       	xEnd:
-      	<input type="range" name="" class="slider">
+      	<input type="number" name="" class="slider" data-x_max value="20">
       	yStart:
-      	<input type="range" name="" class="slider">
+      	<input type="number" name="" class="slider" data-y_min value="0">
       	yEnd:
-      	<input type="range" name="" class="slider">
+				<input type="number" name="" class="slider" data-y_max value="20">
+				Vector x:
+				<input type="number" name="" class="slider" data-vector_x value="10">
+				vector y:
+      	<input type="number" name="" class="slider" data-vector_y value="10">
       </div>
     </div>
   </div>
@@ -97,7 +110,9 @@
 
 
 		<script src='assets/js/asgard/asgard.js' charset='utf-8'></script>
-			<script src='assets/js/asgard/addGrid.js' charset='utf-8'></script>
+			<!-- <script src='assets/js/asgard/addGrid.js' charset='utf-8'></script> -->
+			<script src='assets/js/asgard/grid/numberLine.js' charset='utf-8'></script>
+			<script src='assets/js/asgard/grid/coordinatePlane.js' charset='utf-8'></script>
 		
 		<script src='assets/js/renderer/canvas.js' charset='utf-8'></script>
 			<script src='assets/js/renderer/canvas/fill.js' charset='utf-8'></script>
@@ -108,6 +123,9 @@
 		
 		<script src='assets/js/renderer/freyja.js' charset='utf-8'></script>
 			<script src='assets/js/renderer/freyja/addCanvas.js' charset='utf-8'></script>
+			<script src='assets/js/renderer/freyja/offset.js' charset='utf-8'></script>
+			<script src='assets/js/renderer/freyja/renderBoundingBox.js' charset='utf-8'></script>
+			<script src='assets/js/renderer/freyja/renderCoordinatePlane2D.js' charset='utf-8'></script>
 			
 
 		<!-- start app -->

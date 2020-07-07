@@ -17,7 +17,7 @@
  * CanvasRenderingContext2D.fill( 'gold' ); // fill the whole canvas with gold color:
  *
  */
-CanvasRenderingContext2D.prototype.fill = function( color = this.defaultConfig.fillStyle ) { 
+CanvasRenderingContext2D.prototype.fillLayer = function( color = this.defaultConfig.fillStyle ) { 
   this.fillStyle = color;                      								// Set context fillcolor to the passed color argument.
   this.fillRect(0, 0, this.canvas.width, this.canvas.height)	// Create the rectangle.
 }

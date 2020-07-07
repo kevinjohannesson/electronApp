@@ -20,6 +20,578 @@ setTimeout(function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// renderCoordinatePlane2D(plane)
+// console.log(freyja)
+// console.log(freyja.offset)
+
+// console.log(freyja.centeredBox)
+// console.log(freyja.offset)
+// freyja.setRenderOffset(plane);
+
+// freyja.renderBoundingBox( plane )
+
+
+
+// freyja.layer.createLine( freyja.pos(vec2(0,0)), freyja.pos( vec2(100,100) ))
+
+// // console.log(freyja.renderOffset)
+
+// function renderCoordinatePlane2D( CoordinatePlane2D ) {
+
+// 	// calculate offset to center the plane in view:
+// 	const offset_x 	= ( freyja.canvas.width - CoordinatePlane2D.width ) / 2,
+// 				offset_y 	= ( freyja.canvas.height - CoordinatePlane2D.height ) / 2,
+// 				offset 		= vec2( offset_x, offset_y ),
+// 				center = ( vector ) => { return vecAdd( vector, offset ) }
+
+// 	// draw bounding box for the plane:
+// 	freyja.boundingBox( CoordinatePlane2D.width, CoordinatePlane2D.height, offset )
+
+// 	renderAxisLines( CoordinatePlane2D )
+// 	renderNumberTicks( CoordinatePlane2D )
+// 	renderGridLines( CoordinatePlane2D )
+
+// 	function renderGridLines( CoordinatePlane2D ){
+// 		renderAxisGrid( CoordinatePlane2D.axes.x )
+// 		renderAxisGrid( CoordinatePlane2D.axes.y )
+// 	}
+
+// 	function renderAxisGrid( axis ) {
+// 		const config = {
+// 			strokeStyle: 'rgba(50,50,50,0.5)',
+// 			lineWidth: 1, }
+// 		// draw grid lines:
+// 		axis.gridLines.forEach( (line,index, arr) => {
+// 			if(index !== 0 && index !== arr.length-1) { // do not draw the first and last gridline, stylistic purposes
+// 			freyja.layer.createLine( center( line.start ), center( line.end) , config ) }
+// 		})
+// 	}
+
+// 	function renderNumberTicks( CoordinatePlane2D ) {
+// 		renderNumberTick( CoordinatePlane2D.axes.x )
+// 		renderNumberTick( CoordinatePlane2D.axes.y )
+// 	}
+
+// 	function renderAxisLines( CoordinatePlane2D ) {
+// 		renderAxisLine( CoordinatePlane2D.axes.x )
+// 		renderAxisLine( CoordinatePlane2D.axes.y )
+// 	}
+
+// 	function renderNumberTick( axis ) {
+// 		const tickColor = 'rgba(50,50,50,0.75)'
+// 		let tickWidth = 5 // setup width and height for the tick
+// 		let tickHeight = 10
+// 		if(axis.id === 'y') {  // swap height and widht for y axis
+// 			tickHeight = (tickWidth=>tickWidth)(tickWidth,tickWidth=tickHeight) }
+		
+// 		freyja.layer.fillStyle = tickColor;
+	
+// 		axis.numbers.forEach( number => {
+// 			const tickPosition = center( number.position ) // Center the tick origin in the view
+// 			freyja.layer.fillRect( 
+// 				(tickPosition.x - tickWidth/2), (tickPosition.y - tickHeight/2), tickWidth, tickHeight ) // create a rectangle from the centered origin.
+// 		})	
+// 	}
+
+
+// 	function renderAxisLine( axis ) {
+// 		const is_xAxis = axis.id === 'x'
+// 		// axis lines extend a bit outside of the bounding box for stylistic purposes...
+// 		const extendLength = 25
+// 		// create vectors to extend the line with:
+// 		const extendStart = is_xAxis? vec2( -extendLength, 0 ) : vec2( 0, -extendLength )
+// 		const extendEnd = is_xAxis? vec2( extendLength, 0 ) : vec2( 0, extendLength )
+
+// 		const lineStart = vectorMath.add( axis.start, extendStart )
+// 		const lineEnd = vectorMath.add( axis.end, extendEnd )
+
+// 		// set up styling for canvasContext
+// 		const config = {
+// 			strokeStyle: is_xAxis? 'tomato' : 'lawngreen',
+// 			lineWidth: 9, }
+// 		// draw axis lines:
+// 		freyja.layer.createLine( center( lineStart ), center( lineEnd) , config )
+
+// 	}
+// }
+
+
+
+
+// const x_min = 10, x_max = 0, y_min = -5, y_max = 15
+
+// console.log( 'x_min: ', x_min, 'x_max: ', x_max, 'y_min: ', y_min, 'y_max: ', y_max )
+
+// const plane = new CoordinatePlane(x_min, x_max, y_min, y_max);
+// console.log(plane);
+
+// // const arr = plane.axis.x.numbers
+
+
+
+// const sPlane = new sizedCoordinatePlane(plane)
+// console.log(sPlane)
+// freyja.layer.globalCompositeOperation = 'multiply';
+
+// const offset_x 	= ( freyja.canvas.width - sPlane.width ) / 2,
+// 			offset_y 	= ( freyja.canvas.height - sPlane.height ) / 2,
+// 			offset 		= vec2( offset_x, offset_y ),
+// 			center = ( vector ) => { return vecAdd( vector, offset ) }
+
+// // set up styling for canvasContext
+// const config = {
+// 	strokeStyle: 'tomato',
+// 	lineWidth: 9, }
+// // draw axis lines:
+// freyja.layer.createLine( center(sPlane.axes.x.start), center(sPlane.axes.x.end), config )
+
+// // set up styling for canvasContext
+// const config_y = {
+// 	strokeStyle: 'lawngreen',
+// 	lineWidth: 9, }
+// // draw axis lines:
+// freyja.layer.createLine( center(sPlane.axes.y.start), center(sPlane.axes.y.end), config_y )
+
+// sPlane.gridLines.x.forEach( (element, index) => {
+// 	// console.log(element)
+// 	const config = {
+// 		strokeStyle: 'rgba(50,50,50,0.5)',
+// 		lineWidth: 1, }
+// 	freyja.layer.createLine( center(element.start), center(element.end), config )
+// })
+
+// sPlane.gridLines.y.forEach( (element, index) => {
+// 	// console.log(element)
+// 	const config = {
+// 		strokeStyle: 'rgba(50,50,50,0.5)',
+// 		lineWidth: 1, }
+// 	freyja.layer.createLine( center(element.start), center(element.end), config )
+// })
+
+
+// console.log(renderplane.createAxis())
+
+// function createAxis( coordinatePlane, width = 700, height =  600 ) {
+// 	const normal = coordinatePlane.axes.x.position
+// 	const y = height - normal * height
+// 	const start = vec2( 0, y )
+// 	const end = vec2( width, y )
+
+// 	console.log(start, end)
+	
+// }
+
+// createAxis(plane)
+
+
+// function renderCoordinatePlane2( plane ) {
+
+// 	freyja.layer.globalCompositeOperation = 'multiply';
+
+// 	const width = 800
+// 	const height = 600
+
+// 	const offset_x 	= ( freyja.canvas.width - width ) / 2,
+// 				offset_y 	= ( freyja.canvas.height - height ) / 2,
+// 				offset 		= vec2( offset_x, offset_y ),
+// 				center = ( vector ) => { return vecAdd( vector, offset ) }
+
+	
+
+// 	function renderAxisLines( axis = 'x' ) {
+// 		const is_xAxis = axis === 'x'
+// 		const axisNormalPosition = plane.axes[axis].position
+// 		// axis lines extend a bit outside of the bounding box for stylistic purposes...
+// 		const extendLength = 25
+// 		// create vectors to extend the line with:
+// 		const extendStart = is_xAxis? vec2( -extendLength, 0 ) : vec2( 0, -extendLength )
+// 		const extendEnd = is_xAxis? vec2( extendLength, 0 ) : vec2( 0, extendLength )
+
+// 		// console.log(currentAxis.start, offset, extendStart)
+
+// 		console.log(currentAxis)
+// 		const axisPosition = is_xAxis? height - ( axisNormalPosition * height ) : axisNormalPosition * width
+// 		console.log(axisPosition)
+// 		const start = is_xAxis? vec2(0, axisPosition) : vec2(axisPosition, 0)
+// 		console.log(start);
+// 		const end = is_xAxis? vec2(width, axisPosition): vec2(axisPosition, height)
+// 		const lineStart = vectorMath.add( start, extendStart )
+// 		const lineEnd = vectorMath.add( end, extendEnd )
+
+// 		console.log( lineStart, lineEnd)
+
+// 	}
+
+// 	renderBoundingBox( width, height, offset)
+
+// 	// renderAxisLines( plane, offset )
+// 	// renderAxisLines( plane, offset, 'y' )
+// }
+
+// renderCoordinatePlane(plane);
+
+
+// function createCoordinatePlane(){
+
+// const plane = new CoordinatePlane();
+// console.log(plane);
+
+// function renderCoordinatePlane( plane ) {
+// 	const offset_x 	= ( freyja.canvas.width - plane.width ) / 2,
+// 				offset_y 	= ( freyja.canvas.height - plane.height ) / 2,
+// 				offset 		= vec2( offset_x, offset_y ),
+// 				setOffset = ( vector ) => { return vecAdd( vector, offset ) }
+	
+// 	freyja.layer.globalCompositeOperation = 'multiply';
+	
+	
+// 	// renderGridBorder( plane, offset ); 
+
+// 	renderAxisLines( plane, offset )
+// 	renderAxisLines( plane, offset, 'y')
+
+// 	renderGridLines(plane, offset)
+// 	renderGridLines(plane, offset, 'y')
+
+// 	renderTicks(plane, offset)
+// 	renderTicks(plane, offset, 'y')
+
+// 	renderNumbers(plane, offset)
+// 	renderNumbers(plane, offset, 'y')
+// }
+
+
+// function renderGridBorder( plane, offset ){
+// 	// Create a rectangular bounding box around the coordinate plane using a dashed line.
+	
+// 	// Declare variables for styling of the stroke:
+// 	const lineWidth = 2;
+// 	const dashLength = 8;
+// 	const dashSpace = 20;
+// 	const strokeColor = 'rgba(50,50,50,0.5)';
+
+// 	// Style the canvas stroke:
+// 	freyja.layer.strokeStyle = strokeColor;
+// 	freyja.layer.lineWidth = lineWidth;
+// 	freyja.layer.setLineDash([dashLength, dashSpace]);
+
+// 	// Draw the rectangle:
+// 	freyja.layer.strokeRect( offset.x, offset.y, plane.width, plane.height );
+
+// 	// Reset the canvas linedash():
+// 	freyja.layer.setLineDash([]); 
+// }
+
+// renderCoordinatePlane(plane);
+
+// function renderAxisLines( plane, offset, axis = 'x' ) {
+// 	const is_xAxis = axis === 'x';
+// 	const currentAxis = plane.grid.axes[axis]
+
+// 	// axis lines extend a bit outside of the bounding box for stylistic purposes...
+// 	const extendLength = 25
+// 	const extendStart = is_xAxis? vec2( -extendLength, 0 ) : vec2( 0, -extendLength )
+// 	const extendEnd = is_xAxis? vec2( extendLength, 0 ) : vec2( 0, extendLength )
+
+// 	// console.log(currentAxis.start, offset, extendStart)
+// 	const lineStart = vectorMath.add( currentAxis.start, offset, extendStart )
+// 	const lineEnd = vectorMath.add( currentAxis.end, offset, extendEnd )
+
+// 	// console.log( lineStart, lineEnd)
+
+// 	// set up styling for canvasContext
+// 	const config = {
+// 		strokeStyle: is_xAxis? 'tomato' : 'lawngreen',
+// 		lineWidth: 9, }
+// 	// draw axis lines:
+// 	freyja.layer.createLine( lineStart, lineEnd, config )
+// }
+
+// function renderGridLines(plane, offset, axis = 'x'){
+// 	const { lines } = plane.grid
+
+// 	const drawGridLine = (vector_pair) => {
+// 		const lineStart_vector = vectorMath.add(vector_pair.start, offset )
+// 		const lineEnd_vector = vectorMath.add(vector_pair.end, offset )
+
+// 		const config = { 
+// 			strokeStyle: 'rgba(50,50,50,0.75)',
+// 			lineWidth: 1, }
+
+// 		freyja.layer.createLine( lineStart_vector, lineEnd_vector, config )
+// 	}
+
+// 	lines[axis].forEach(drawGridLine)
+// }
+
+// function renderTicks(plane, offset, axis = 'x') {
+// 	const { ticks } = plane.grid.axes[axis]
+	
+// 	const drawTicks = origin_vector => {
+		
+// 		const tickOrigin_vector = vectorMath.add( origin_vector, offset );
+		
+// 		let tickWidth =  4 
+// 		let tickHeight = 12
+// 		if(axis === 'y') tickHeight = (tickWidth=>tickWidth)(tickWidth,tickWidth=tickHeight);
+
+// 		const tickTopLeft_vector = {
+// 			x: tickOrigin_vector.x - tickWidth / 2,
+// 			y: tickOrigin_vector.y - tickHeight / 2 }
+		
+// 		freyja.layer.fillStyle = 'rgba(50,50,50,0.75)'
+		
+// 		freyja.layer.fillRect( tickTopLeft_vector.x, tickTopLeft_vector.y, tickWidth, tickHeight)
+// 	}
+
+// 	ticks.forEach(drawTicks)
+// }
+
+
+// function renderNumbers(plane, offset, axis = 'x'){
+// 	const { ticks } = plane.grid.axes[axis]
+
+// 	const lastIndex = plane.grid.axes[ axis ].numbers.length-1
+// 	const drawNumbers = (origin_vector, index) => {
+// 		// console.log(origin_vector)
+
+// 		const value = plane.grid.axes[ axis ].numbers[axis === 'x' ? index : lastIndex-index ]
+
+// 		const textOffset_vector = axis === 'x'? vec2( 7, 10) : vec2(-15, -5);
+// 		// console.log(textOffset_vector)
+// 		const textOrigin_vector = 
+// 			vectorMath.add( 
+// 				vectorMath.add(origin_vector, offset), 
+// 				textOffset_vector
+// 			)
+
+
+		
+// 		freyja.layer.font = 'italic 10px Arial';
+//     freyja.layer.textAlign = 'center';
+//     freyja.layer. textBaseline = 'middle';
+//     freyja.layer.fillStyle = 'black';  // a color name or by using rgb/rgba/hex values
+//     freyja.layer.fillText(value, textOrigin_vector.x, textOrigin_vector.y); // text and position	
+
+// 	}
+// 	ticks.forEach(drawNumbers)
+// }
+
+// }
+// const plane = new coordinatePlane( freyja.layer );
+// const plane = new Plane();
+// console.log(plane)
+// freyja.layer.fillStyle = 'black';
+// const offsetX = ( freyja.canvas.width - plane.width ) / 2,
+// 			offsetY = ( freyja.canvas.height - plane.height ) / 2,
+// 			offset = vec2( offsetX, offsetY ),
+// 			setOffset = ( vector ) => { return vecAdd( vector, offset ) }
+// // freyja.layer.setLineDash([10, 15]);
+// // freyja.layer.lineWidth = 2;
+// // freyja.layer.strokeRect( offsetX, offsetY, plane.width, plane.height );
+// // freyja.layer.setLineDash([]);
+
+// const xStart = -33, xEnd = 77,
+// 			yStart = -30, yEnd = 10;
+
+// const axes = plane.createAxis( xStart, xEnd, yStart, yEnd ),
+// 			lineExtend = 50,
+// 			xAxisStart = vecAdd( vecAdd( axes.x.start, offset ), vec2( -lineExtend, 0 ) ),
+// 			xAxisEnd = vecAdd( vecAdd( axes.x.end, offset ), vec2( lineExtend, 0 ) ),//,
+
+// 			yAxisStart = vecAdd( vecAdd( axes.y.start, offset ), vec2( 0, -lineExtend ) ),
+// 			yAxisEnd = vecAdd( vecAdd( axes.y.end, offset ), vec2( 0, lineExtend ) );
+
+// freyja.layer.globalCompositeOperation = 'multiply';
+// freyja.layer.createLine( xAxisStart, xAxisEnd, {strokeStyle: 'red', lineWidth: 8} );
+// freyja.layer.createLine( yAxisStart, yAxisEnd, {strokeStyle: 'lightgreen', lineWidth: 8} );
+
+// const xSteps = 10, ySteps = 1;
+
+// // need to add ticks on the axis;
+// let x = axes.y.start.x;
+// const xIncr = plane.width / ( diff( xStart, xEnd ) / xSteps );
+
+
+// let y = axes.x.start.y;
+// const yIncr = plane.height / ( diff( yStart, yEnd ) / ySteps ) ;
+
+
+// // console.log( lerpVals() );
+
+
+// 	const xAxisPositiveValues = lincr( x, plane.width, xIncr ),
+// 				xAxisNegativeValues = lincr( x, 0, xIncr );
+
+// 				xAxisNegativeValues.reverse();
+// 				xAxisNegativeValues.pop();
+
+// 	const xAxisValues = [ ...xAxisNegativeValues, ...xAxisPositiveValues ];
+			
+// 	// xAxisValues.splice( xAxisNegativeValues.length, 1 );
+
+// 	const yAxisPositiveValues = lincr( y, plane.height, yIncr ),
+// 				yAxisNegativeValues = lincr( y, 0, yIncr );
+
+// 				yAxisNegativeValues.reverse();
+
+// 	const yAxisValues = [ ...yAxisNegativeValues, ...yAxisPositiveValues ];
+			
+// 	yAxisValues.splice( yAxisNegativeValues.length, 1 );
+
+// 	const xAxisLineStartVectors = vec2( xAxisValues, 0 ),
+// 				xAxisLineEndVectors = vec2( xAxisValues, plane.height ),
+// 				yAxisLineStartVectors = vec2( 0, yAxisValues ),
+// 				yAxisLineEndVectors = vec2( plane.width, yAxisValues );
+
+// 	const axisLineStarts = [ ...xAxisLineStartVectors, ...yAxisLineStartVectors ],
+// 				axisLineEnds = [ ...xAxisLineEndVectors, ...yAxisLineEndVectors];
+
+// 	for (let i = axisLineStarts.length - 1; i >= 0; i--) {
+// 			const lineStart = vecAdd( axisLineStarts[i], offset ),
+// 						lineEnd = vecAdd( axisLineEnds[i], offset );
+// 			freyja.layer.createLine( lineStart, lineEnd, {strokeStyle: 'darkgrey', lineWidth: 1} );	}	
+
+
+// freyja.layer.font = 'italic 9px Arial';
+//     freyja.layer.textAlign = 'center';
+//     freyja.layer. textBaseline = 'middle';
+//     freyja.layer.fillStyle = 'black';  // a color name or by using rgb/rgba/hex values
+//     freyja.layer.fillText('Hello World!', 150, 50); // text and position	
+
+
+
+// 	const axisTickSize = 8;
+
+// 	for (let i = 0; i < xAxisValues.length; i++) {
+// 			const tickOriginVector = vec2( xAxisValues[i], axes.x.start.y );
+// 			let lineStart = vecAdd( tickOriginVector, vec2( 0, axisTickSize/2 ) ) ,
+// 					lineEnd = vecAdd( tickOriginVector, vec2( 0, -axisTickSize/2 ) );
+
+// 			// console.log( lineStart, lineEnd );
+
+// 			lineStart = setOffset( lineStart );
+// 			lineEnd = setOffset( lineEnd );
+
+
+// 			textCoordinate = setOffset(tickOriginVector);
+// 			textCoordinate = vecAdd( textCoordinate, vec2( 10, 10 ) ) // move down-right a little
+			
+// 			let number = i; 
+// 			if ( i < xAxisNegativeValues.length ) number = -xAxisNegativeValues.length + i;
+// 			else number = i - xAxisNegativeValues.length;
+
+// 			number *= xSteps;
+// 			freyja.layer.fillText(number, textCoordinate.x, textCoordinate.y); // text and position	
+			
+// 			// console.log( lineStart, lineEnd );
+
+// 		// }
+
+// 			freyja.layer.createLine( lineStart, lineEnd, {strokeStyle: 'lightslategrey', lineWidth: 4} );	}	
+
+// function addTicks( axisValues, axis = 'x' ){
+// 	// console.log(axisValues, axis);
+// 	const is_xAxis = axis === 'x'; // Check which axis we're working with.
+// 	// console.log(is_xAxis);
+// 	const createTickLocationVector = ( locationValue ) => {
+// 		const vector = is_xAxis ? vec2( locationValue, axes.x.start.y ) : vec2( axes.y.start.x, locationValue );
+// 		// console.log(vector);
+// 		return vector
+// 	}
+// 	const axisTickOriginVectors = axisValues.map( createTickLocationVector );
+// 	axisTickOriginVectors.forEach( drawTicks );
+// }
+
+// addTicks( xAxisValues );
+	
+// function drawTicks( tickOrigin_vector ) {
+// 	// ping('green');
+// 	// console.log(tickOrigin_vector)
+// 	// console.log(axis);
+
+// 	// const createTicks = ( tickOrigin_vector) => {
+// 		// console.log(tickOrigin_vector)
+// 		// const tickStartOffset_vector = xAxis ? vec2( 0, axisTickSize ) : vec2( axisTickSize, 0 ),
+// 		// 			tickEndOffset_vector = xAxis ? vec2( 0, -axisTickSize ) : vec2( -axisTickSize, 0 );
+// 		// console.log(tickStartOffset_vector, tickEndOffset_vector);
+// 		// let tickStart_vector = vector.add( tickOrigin_vector, tickStartOffset_vector ),
+// 		// 		tickEnd_vector = vector.add( tickOrigin_vector, tickEndOffset_vector );
+
+// 		// let lineStartVector = 
+// 	}
+
+
+
+				// axisValues.forEach( currentVector, function() {
+				// 	createTicks( currentVector );
+				// })
+
+			// 	for (let i = 0; i < axisValues.length; i++) {
+
+			// 	const tickOriginVector = vec2( axisValues[i], axes.x.start.y );
+			// 	let lineStart = vecAdd( tickOriginVector, vec2( 0, axisTickSize/2 ) ) ,
+			// 			lineEnd = vecAdd( tickOriginVector, vec2( 0, -axisTickSize/2 ) );
+
+			// 	// console.log( lineStart, lineEnd );
+
+			// 	lineStart = setOffset( lineStart );
+			// 	lineEnd = setOffset( lineEnd );
+
+
+			// 	textCoordinate = setOffset(tickOriginVector);
+			// 	textCoordinate = vecAdd( textCoordinate, vec2( 10, 10 ) ) // move down-right a little
+				
+			// 	let number = i; 
+			// 	if ( i < xAxisNegativeValues.length ) number = -xAxisNegativeValues.length + i;
+			// 	else number = i - xAxisNegativeValues.length;
+
+			// 	number *= xSteps;
+			// 	freyja.layer.fillText(number, textCoordinate.x, textCoordinate.y); // text and position	
+
+			// freyja.layer.createLine( lineStart, lineEnd, {strokeStyle: 'lightslategrey', lineWidth: 4} );	}	
+			// }
+
+			
+
+
+
+
+
+
+// render geometry:
+// renderer.renderPoint( pt_a );
+// renderer.renderPoint( pt_b );
+// renderer.renderPoint( pt_c );
+// renderer.renderPoints( space.geometry.points );
+
+// // Simpler way to write xy vectors:
+// const xy = xy_vector = (x, y)=> { return asgard.get_xy_vector(x, y) };
+// // Storing current frame for animation purposes:
+// const f = ()=>{ return freya.current_frame};
+
+
+// // Set up basic canvas layer:
+
+// // draw a grid on the first layer:
+// odin.drawGrid(50);
+// // add new layer to show geometry:
+// odin.createLayer('geometry_layer');
   create_2(type){
 
       function convertToVector(input){

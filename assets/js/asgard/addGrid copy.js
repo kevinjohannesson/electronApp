@@ -1,20 +1,10 @@
-class numberLine {
+class Axis {
   constructor( minValue = 0, maxValue = 10 ){
     this.min = minValue
     this.max = maxValue 
     this.length = diff( this.min, this.max )
-    this.numbers = this.getNumbers
   }
-
-  getNumbers() {
-    let { min, max } = this
-    if(max < min) max = (min=>min)(min,min=max)
-    const numbers = [];
-    while(min <= max){
-      numbers.push(min++);
-    }
-    return numbers
-  } 
+  
 }
 
 
@@ -153,90 +143,6 @@ class CoordinatePlane {
   else { return this.grid.lines.x.map( ( line )=>{
     return { x: this.grid.axes.y.constant, y: line.start.y } } ) } 
   }
-}
-
-
-// const aapje = new CoordinatePlane2D
-// console.log(aapje)
-
-
-
-class sizedCoordinatePlane2{
-  
-  constructor( CoordinatePlane, width = 700, height = 500 ){
-		this.coordinatePlane = CoordinatePlane
-		this.width = width
-		this.height = height
-
-		this.axes = {
-			x: this.createAxis(),
-      y: this.createAxis( 'y' ) }
-      
-    this.axes.x.numbers = {
-      value: this.coordinatePlane.axes.x.numbers.value,
-      position: this.getAxisNumberPosition()
-    }
-
-    this.axes.y.numbers = {
-      value: this.coordinatePlane.axes.y.numbers.value,
-      position: this.getAxisNumberPosition('y')
-    }
-
-		this.gridLines = {
-			x: this.createGridLines(),
-			y: this.createGridLines( 'y' ) }
-  }
-
-  getAxisNumberPosition( axisLetter = 'x' ){
-    const is_xAxis = axisLetter === 'x'
-    const interpolatedPositions = this.coordinatePlane.axes[axisLetter].numbers.map( element => {
-			const length = is_xAxis? this.width : this.height
-			return element.position * length
-    })
-    return interpolatedPositions
-  }
-  
-  createAxisTicks( axisLetter = 'x' ){
-		const is_xAxis = axisLetter === 'x'
-    // const ticks = this.coordinatePlane.axes[axisLetter].numbers.map( )
-    const interpolatedPositions = this.coordinatePlane.axes[axisLetter].numbers.map( element => {
-			const length = is_xAxis? this.width : this.height
-			return element.position * length
-    })
-    console.log(interpolatedPositions)
-  }
-	
-	createAxis( axisLetter = 'x' ){
-		const is_xAxis = axisLetter === 'x'
-		const { width, height } = this
-		const position = this.coordinatePlane.axes[axisLetter].position
-		const constant = is_xAxis? height - position * height : position * width
-		const axis = {
-			start: is_xAxis? vec2( 0, constant ) : vec2( constant, 0 ),
-			end: is_xAxis? vec2( width, constant ) : vec2( constant, height )
-		}
-
-		return axis
-	}
-
-	createGridLines( axisLetter = 'x' ){
-		const is_xAxis = axisLetter === 'x'
-		const interpolatedPositions = this.coordinatePlane.axes[axisLetter].numbers.map( element => {
-			const length = is_xAxis? this.width : this.height
-			return element.position * length
-		})
-
-		const lines = interpolatedPositions.map( element => {
-			const line = {
-				start: is_xAxis? vec2( element, 0 ) : vec2( 0, element ),
-				end: is_xAxis? vec2( element, this.height) : vec2( this.width, element )
-			}
-			return line
-		})
-
-		return lines
-	}
-
 }
 
 // createAxis(xStart = -5, xEnd = 10, yStart = 0, yEnd = 10) {
